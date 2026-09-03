@@ -54,6 +54,21 @@
     text-decoration: underline;
   }
 
+  #searchBox {
+    text-align: center;
+    padding: 15px 20px;
+    background-color: #10254a;
+  }
+
+  #searchInput {
+    width: 300px;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #1a3d7c;
+    background-color: #0b1a33;
+    color: #ffffff;
+  }
+
   #content {
     padding: 20px;
     max-width: 1100px;
@@ -174,6 +189,10 @@
   <a href="#instrucciones">Como instalar</a>
 </div>
 
+<div id="searchBox">
+  <input type="text" id="searchInput" placeholder="Buscar tema..." onkeyup="buscarTema()">
+</div>
+
 <div id="content">
 
   <a name="inicio"></a>
@@ -260,6 +279,22 @@
 <div id="footer">
   PS3 Themes &mdash; Sitio hecho para verse bien en el navegador de PlayStation 3
 </div>
+
+<script type="text/javascript">
+function buscarTema() {
+  var texto = document.getElementById("searchInput").value.toLowerCase();
+  var cajas = document.getElementsByClassName("theme-box");
+  for (var i = 0; i < cajas.length; i++) {
+    var titulo = cajas[i].getElementsByTagName("h3")[0].innerHTML.toLowerCase();
+    var celda = cajas[i].parentNode;
+    if (titulo.indexOf(texto) !== -1) {
+      celda.style.display = "";
+    } else {
+      celda.style.display = "none";
+    }
+  }
+}
+</script>
 
 </body>
 </html>
