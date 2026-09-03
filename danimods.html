@@ -56,7 +56,7 @@
 
   #searchBox {
     text-align: center;
-    padding: 15px 20px;
+    padding: 15px 20px 8px 20px;
     background-color: #10254a;
   }
 
@@ -66,6 +66,28 @@
     font-size: 14px;
     border: 1px solid #1a3d7c;
     background-color: #0b1a33;
+    color: #ffffff;
+  }
+
+  #catFilter {
+    text-align: center;
+    padding: 0 20px 15px 20px;
+    background-color: #10254a;
+  }
+
+  .cat-btn {
+    display: inline-block;
+    background-color: #0b1a33;
+    color: #cfe0ff;
+    border: 1px solid #1a3d7c;
+    padding: 6px 16px;
+    margin: 4px 4px 0 4px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .cat-btn.active {
+    background-color: #1a5fd6;
     color: #ffffff;
   }
 
@@ -193,10 +215,17 @@
   <input type="text" id="searchInput" placeholder="Buscar tema..." onkeyup="buscarTema()">
 </div>
 
+<div id="catFilter">
+  <span class="cat-btn active" onclick="filtrarCategoria('todos', this)">Todos</span>
+  <span class="cat-btn" onclick="filtrarCategoria('ps1', this)">PS1</span>
+  <span class="cat-btn" onclick="filtrarCategoria('ps2', this)">PS2</span>
+  <span class="cat-btn" onclick="filtrarCategoria('ps3', this)">PS3</span>
+</div>
+
 <div id="content">
 
   <a name="inicio"></a>
-  <div id="instructions">
+  <div id="instructions" name="instrucciones">
     <strong>Como descargar e instalar un tema en tu PS3</strong>
     <ol>
       <li>Conecta tu PS3 a internet y abre el navegador</li>
@@ -209,7 +238,7 @@
   <h2 class="section-title">Temas Nuevos</h2>
   <table class="theme-grid" cellspacing="0" cellpadding="0">
     <tr>
-      <td>
+      <td data-cat="ps2">
         <div class="theme-box">
           <img src="images/pes-2027.jpg" alt="pes2027">
           <h3>PES 2027 PS2</h3>
@@ -218,7 +247,7 @@
          <a class="download-btn" href="https://www.mediafire.com/file/v7hz5krsr0ntus7/PES2027-New-season-summer-1-SDm-ESP.pkg/file">Descargar</a>
         </div>
       </td>
-      <td>
+      <td data-cat="ps3">
         <div class="theme-box">
           <img src="images/tema-placeholder-2.jpg" alt="Nombre del tema 2">
           <h3>Nombre del Tema</h3>
@@ -227,7 +256,7 @@
           <a class="download-btn" href="downloads/tema2.p3t">Descargar</a>
         </div>
       </td>
-      <td>
+      <td data-cat="ps3">
         <div class="theme-box">
           <img src="images/tema-placeholder-3.jpg" alt="Nombre del tema 3">
           <h3>Nombre del Tema</h3>
@@ -243,7 +272,7 @@
   <h2 class="section-title">Mas Populares</h2>
   <table class="theme-grid" cellspacing="0" cellpadding="0">
     <tr>
-      <td>
+      <td data-cat="ps3">
         <div class="theme-box">
           <img src="images/tema-placeholder-4.jpg" alt="Nombre del tema 4">
           <h3>Nombre del Tema</h3>
@@ -252,7 +281,7 @@
           <a class="download-btn" href="downloads/tema4.p3t">Descargar</a>
         </div>
       </td>
-      <td>
+      <td data-cat="ps1">
         <div class="theme-box">
           <img src="images/tema-placeholder-5.jpg" alt="Nombre del tema 5">
           <h3>Nombre del Tema</h3>
@@ -261,7 +290,7 @@
           <a class="download-btn" href="downloads/tema5.p3t">Descargar</a>
         </div>
       </td>
-      <td>
+      <td data-cat="ps2">
         <div class="theme-box">
           <img src="images/tema-placeholder-6.jpg" alt="Nombre del tema 6">
           <h3>Nombre del Tema</h3>
@@ -275,19 +304,37 @@
 
 </div>
 
-<a name="instrucciones"></a>
 <div id="footer">
   PS3 Themes &mdash; Sitio hecho para verse bien en el navegador de PlayStation 3
 </div>
 
 <script type="text/javascript">
+var categoriaActual = "todos";
+
+function filtrarCategoria(cat, boton) {
+  categoriaActual = cat;
+  var botones = document.getElementsByClassName("cat-btn");
+  for (var i = 0; i < botones.length; i++) {
+    botones[i].className = "cat-btn";
+  }
+  boton.className = "cat-btn active";
+  aplicarFiltros();
+}
+
 function buscarTema() {
+  aplicarFiltros();
+}
+
+function aplicarFiltros() {
   var texto = document.getElementById("searchInput").value.toLowerCase();
   var cajas = document.getElementsByClassName("theme-box");
   for (var i = 0; i < cajas.length; i++) {
-    var titulo = cajas[i].getElementsByTagName("h3")[0].innerHTML.toLowerCase();
     var celda = cajas[i].parentNode;
-    if (titulo.indexOf(texto) !== -1) {
+    var titulo = cajas[i].getElementsByTagName("h3")[0].innerHTML.toLowerCase();
+    var cat = celda.getAttribute("data-cat");
+    var pasaCategoria = (categoriaActual === "todos" || cat === categoriaActual);
+    var pasaBusqueda = (titulo.indexOf(texto) !== -1);
+    if (pasaCategoria && pasaBusqueda) {
       celda.style.display = "";
     } else {
       celda.style.display = "none";
