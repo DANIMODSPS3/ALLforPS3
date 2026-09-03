@@ -1,0 +1,222 @@
+/* Estilos compartidos - PS3 DANIMODS ALL */
+/* Compatibles con el navegador de PS3 (NetFront) */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0b1a33;
+  color: #e6ecf5;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+#header {
+  background-color: #071022;
+  border-bottom: 2px solid #1a3d7c;
+  padding: 20px;
+  text-align: center;
+}
+
+#header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #66aaff;
+  letter-spacing: 2px;
+}
+
+#header p {
+  margin: 6px 0 0 0;
+  color: #9fb3d1;
+  font-size: 14px;
+}
+
+#nav {
+  background-color: #10254a;
+  padding: 10px 20px;
+  text-align: center;
+  border-bottom: 1px solid #1a3d7c;
+}
+
+#nav a {
+  color: #cfe0ff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 14px;
+}
+
+#nav a.active {
+  color: #66aaff;
+  text-decoration: underline;
+}
+
+#nav a:hover {
+  color: #66aaff;
+  text-decoration: underline;
+}
+
+#searchBox {
+  text-align: center;
+  padding: 15px 20px;
+  background-color: #10254a;
+}
+
+#searchInput {
+  width: 300px;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #1a3d7c;
+  background-color: #0b1a33;
+  color: #ffffff;
+}
+
+#content {
+  padding: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+h2.section-title {
+  color: #66aaff;
+  border-bottom: 1px solid #1a3d7c;
+  padding-bottom: 6px;
+  font-size: 20px;
+}
+
+/* Grilla de temas usando tabla para maxima compatibilidad */
+table.theme-grid {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+table.theme-grid td {
+  width: 33%;
+  vertical-align: top;
+  padding: 10px;
+}
+
+.theme-box {
+  background-color: #10254a;
+  border: 1px solid #1a3d7c;
+  padding: 12px;
+}
+
+.theme-box img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #071022;
+  display: block;
+  margin-bottom: 8px;
+  background-color: #051020;
+}
+
+.theme-box h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.theme-box p.desc {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  color: #9fb3d1;
+}
+
+.theme-box .meta {
+  font-size: 12px;
+  color: #6f88ad;
+  margin-bottom: 8px;
+}
+
+.download-btn {
+  display: block;
+  text-align: center;
+  background-color: #1a5fd6;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #0f3d99;
+}
+
+.download-btn:hover {
+  background-color: #2a70e6;
+}
+
+.download-btn + .download-btn {
+  margin-top: 6px;
+}
+
+#instructions {
+  background-color: #10254a;
+  border: 1px solid #1a3d7c;
+  padding: 16px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  color: #cfe0ff;
+}
+
+#instructions ol {
+  margin: 10px 0 0 20px;
+  padding: 0;
+}
+
+#instructions li {
+  margin-bottom: 6px;
+}
+
+#footer {
+  text-align: center;
+  padding: 20px;
+  color: #6f88ad;
+  font-size: 12px;
+  border-top: 1px solid #1a3d7c;
+}
+
+/* Tarjetas de categoria en la pagina de inicio */
+.cat-cards {
+  display: table;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.cat-card-row {
+  display: table-row;
+}
+
+.cat-card {
+  display: table-cell;
+  width: 25%;
+  padding: 10px;
+  vertical-align: top;
+}
+
+.cat-card a {
+  display: block;
+  background-color: #10254a;
+  border: 1px solid #1a3d7c;
+  text-decoration: none;
+  color: #ffffff;
+  text-align: center;
+  padding: 30px 10px;
+}
+
+.cat-card a:hover {
+  background-color: #17305e;
+  border-color: #4f7fff;
+}
+
+.cat-card .cat-icon {
+  font-size: 26px;
+  color: #66aaff;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.cat-card .cat-count {
+  display: block;
+  font-size: 12px;
+  color: #9fb3d1;
+  margin-top: 4px;
+}
