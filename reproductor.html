@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Reproductor - PS3 DANIMODS ALL</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<style type="text/css">
+  #playerBox {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  #urlInput {
+    width: 70%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #1a3d7c;
+    background-color: #0b1a33;
+    color: #ffffff;
+  }
+
+  #playBtn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #1a5fd6;
+    color: #ffffff;
+    border: 1px solid #0f3d99;
+    cursor: pointer;
+  }
+
+  #playBtn:hover {
+    background-color: #2a70e6;
+  }
+
+  #videoWrapper {
+    margin-top: 20px;
+    background-color: #071022;
+    border: 1px solid #1a3d7c;
+    padding: 10px;
+    text-align: center;
+  }
+
+  video {
+    width: 100%;
+    max-width: 860px;
+    background-color: #000000;
+  }
+
+  #statusMsg {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #9fb3d1;
+  }
+
+  .form-row {
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div id="header">
+  <h1>PS3 DANIMODS ALL</h1>
+  <p>Reproductor simple</p>
+</div>
+
+<div id="nav">
+  <a href="index.html">Inicio</a>
+</div>
+
+<div id="playerBox">
+  <h2 class="section-title">Reproductor de video</h2>
+
+  <div id="instructions">
+    <strong>Como usarlo</strong>
+    <ol>
+      <li>Pega un enlace directo a un archivo de video (que termine en .mp4, por ejemplo).</li>
+      <li>Toca "Reproducir".</li>
+      <li>Si no se ve nada, es porque ese formato no es compatible con el navegador de tu PS3. Proba con otro archivo.</li>
+    </ol>
+  </div>
+
+  <div class="form-row">
+    <input type="text" id="urlInput" placeholder="Pega aqui el enlace directo del video (.mp4)">
+    <button type="button" id="playBtn" onclick="reproducir()">Reproducir</button>
+  </div>
+
+  <div id="videoWrapper">
+    <video id="miVideo" controls>
+      Tu navegador no puede reproducir este video.
+    </video>
+    <div id="statusMsg">Todavia no cargaste ningun video.</div>
+  </div>
+</div>
+
+<div id="footer">
+  PS3 Themes &mdash; Sitio hecho para verse bien en el navegador de PlayStation 3
+</div>
+
+<script type="text/javascript">
+function reproducir() {
+  var url = document.getElementById("urlInput").value;
+  var video = document.getElementById("miVideo");
+  var status = document.getElementById("statusMsg");
+
+  if (!url) {
+    status.innerHTML = "Pega un enlace primero.";
+    return;
+  }
+
+  video.src = url;
+  video.load();
+  video.play();
+  status.innerHTML = "Cargando: " + url;
+}
+
+function obtenerParametroUrl(nombre) {
+  var query = window.location.search.substring(1);
+  var partes = query.split("&");
+  for (var i = 0; i < partes.length; i++) {
+    var par = partes[i].split("=");
+    if (par[0] === nombre) {
+      return decodeURIComponent(par[1] || "");
+    }
+  }
+  return "";
+}
+
+function iniciarAutomatico() {
+  var urlVideo = obtenerParametroUrl("url");
+  if (urlVideo) {
+    document.getElementById("urlInput").value = urlVideo;
+    reproducir();
+  }
+}
+
+iniciarAutomatico();
+</script>
+
+</body>
+</html>
